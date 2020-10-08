@@ -8,8 +8,15 @@ public class TicTacToeGame {
 	static char compKey;
 	static char playerKey;
 	static int position;
+	static int rand_int1;
+	static char turn;
+	static boolean flag=false;
 
-//Assigning Board Elements
+	public static int getRand_int1() {
+		return rand_int1;
+	}
+
+	// Assigning Board Elements
 	public char[] UC1_createBoard() {
 		for (int i = 1; i < 10; i++) {
 			boardElement[i] = ' ';
@@ -27,13 +34,13 @@ public class TicTacToeGame {
 			compKey = 'O';
 			playerKey = 'X';
 			System.out.println("Player Key:" + playerKey);
-			System.out.println("Computer Key" + compKey);
+			System.out.println("Computer Key:" + compKey);
 			break;
 		case 2:
 			compKey = 'X';
 			playerKey = 'O';
 			System.out.println("Player Key:" + playerKey);
-			System.out.println("Computer Key" + compKey);
+			System.out.println("Computer Key:" + compKey);
 			break;
 		default:
 			System.out.println("Invalid Input.Please enter again");
@@ -56,22 +63,35 @@ public class TicTacToeGame {
 
 	/**
 	 * Method to move to the desired position
-	 * 
-	 * @return
 	 */
-	public static int moveOnBoardandAssignKeyUC4_5() {
+	
+	public static void moveOnBoardandAssignKeyUC4_5(char turn) {
 		Scanner sc = new Scanner(System.in);
+		// int toss_result = getRand_int1();
 		System.out.println("Enter the position you want to move to: ");
 		position = sc.nextInt();
 		if (position > 9 || position < 1 && boardElement[position] != ' ') {
 			System.out.println("You have entered invalid position.Please enter again");
-			moveOnBoardandAssignKeyUC4_5();
-			return 0;
+			moveOnBoardandAssignKeyUC4_5(turn);
+		
 
-		} else
-			boardElement[position] = playerKey;
-		return position;
+		} else 
+			{
+			boardElement[position] = turn;
+			showBoard_UC3();
+			winningCondition_UC7();
+			
+				if (turn==playerKey) {
+				turn=compKey;
+				}else if (turn==compKey) {
+					turn=playerKey;
+				}
+			moveOnBoardandAssignKeyUC4_5(turn);
+	}	
 	}
+	
+		
+	
 
 	/**
 	 * Method to determine who plays first
@@ -80,24 +100,73 @@ public class TicTacToeGame {
 	 */
 	public static int toss_UC6() {
 		Random toss = new Random();
-		int rand_int1 = toss.nextInt(2);
+		rand_int1 = toss.nextInt(2);
 		if (rand_int1 == 1) {
 			System.out.println("User Plays first");
+			turn=playerKey;
 		} else {
 			System.out.println("Computer Plays first");
+			turn=compKey;
 		}
 		return rand_int1;
+	}
+
+	
+	  
+	 
+
+	public static boolean winningCondition_UC7() {
+		
+		if (((boardElement[1] == playerKey) && (boardElement[2] == playerKey) && (boardElement[3] == playerKey))
+				|| ((boardElement[4] == playerKey) && (boardElement[5] == playerKey) && (boardElement[6] == playerKey))
+				|| ((boardElement[7] == playerKey) && (boardElement[8] == playerKey) && (boardElement[9] == playerKey))
+				|| ((boardElement[1] == playerKey) && (boardElement[4] == playerKey) && (boardElement[7] == playerKey))
+				|| ((boardElement[2] == playerKey) && (boardElement[5] == playerKey) && (boardElement[8] == playerKey))
+				|| ((boardElement[3] == playerKey) && (boardElement[6] == playerKey) && (boardElement[9] == playerKey))
+				|| ((boardElement[1] == playerKey) && (boardElement[5] == playerKey) && (boardElement[9] == playerKey))
+				|| ((boardElement[3] == playerKey) && (boardElement[5] == playerKey)
+						&& (boardElement[7] == playerKey))) {
+			System.out.println("Player has won");
+			flag= true;
+			return flag;
+			
+		}
+
+		else if (((boardElement[1] == compKey) && (boardElement[2] == compKey) && (boardElement[3] == compKey))
+				|| ((boardElement[4] == compKey) && (boardElement[5] == compKey) && (boardElement[6] == compKey))
+				|| ((boardElement[7] == compKey) && (boardElement[8] == compKey) && (boardElement[9] == compKey))
+				|| ((boardElement[1] == compKey) && (boardElement[4] == compKey) && (boardElement[7] == compKey))
+				|| ((boardElement[2] == compKey) && (boardElement[5] == compKey) && (boardElement[8] == compKey))
+				|| ((boardElement[3] == compKey) && (boardElement[6] == compKey) && (boardElement[9] == compKey))
+				|| ((boardElement[1] == compKey) && (boardElement[5] == compKey) && (boardElement[9] == compKey))
+				|| ((boardElement[3] == compKey) && (boardElement[5] == compKey) && (boardElement[7] == compKey))) {
+			System.out.println("Computer has won");
+			flag= true;
+			return flag;
+		} else {
+			System.out.println("Match is a draw or move forward");
+			flag= false;
+			return flag;
+		}
+
 	}
 
 	public static void main(String[] args) {
 		TicTacToeGame ticTacToe = new TicTacToeGame();
 		char[] boardElement = ticTacToe.UC1_createBoard();
-		toss_UC6();
+		
 		UC2_chooseKey();
-		showBoard_UC3();
-		moveOnBoardandAssignKeyUC4_5();
-		showBoard_UC3();
 		toss_UC6();
+		showBoard_UC3();
+		moveOnBoardandAssignKeyUC4_5(turn);
+		/*winningCondition_UC7();
+		showBoard_UC3();
+		moveOnBoardandAssignKeyUC4_5(compKey);
+		winningCondition_UC7();
+		showBoard_UC3();
+		moveOnBoardandAssignKeyUC4_5(playerKey);
+		showBoard_UC3();
+		winningCondition_UC7();*/
 
 	}
 }
