@@ -290,6 +290,29 @@ public class TicTacToeGame {
 			}
 		}
 	}
+	public static void exitMethod() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Press 1 to play again");
+		System.out.println("Press 2 to exit");
+		int choice = sc.nextInt();
+		switch (choice) {
+		case 1:
+			UC2_chooseKey();
+			toss_UC6();
+			makeMove();
+			showBoard_UC3();
+			moveOnBoardandAssignKeyUC4_5(turn);
+
+		case 2:
+			System.out.println("Thank you for playing my game");
+			break;
+		default:
+			System.out.println("Invalid Input.Please enter again.");
+			exitMethod();
+
+		}
+
+	}
 
 
 
@@ -302,5 +325,6 @@ public class TicTacToeGame {
 		makeMove();
 		showBoard_UC3();
 		moveOnBoardandAssignKeyUC4_5(turn);
+		exitMethod();
 		}
 }
