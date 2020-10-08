@@ -6,6 +6,7 @@ public class TicTacToeGame {
 	static char[] boardElement = new char[10];
 	static char compKey;
 	static char playerKey;
+	static int position;
 
 //Assigning Board Elements
 	public char[] UC1_createBoard() {
@@ -53,13 +54,33 @@ public class TicTacToeGame {
 		System.out.println("~~~~~~~~~~~~~~");
 		System.out.println(boardElement[7]+"|"+boardElement[8]+"|"+boardElement[9]);
 		}
-
-	public static void main(String[] args) {
+	
+	public static void moveOnBoard_UC4(){
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter the position you want to move to: ");
+		position = sc.nextInt();
+		
+		if(position>9 || position<1) {
+			System.out.println("You have entered invalid position.Please enter again");
+			 moveOnBoard_UC4();
+			}
+		else if (boardElement[position]!=' ') {
+				System.out.println("The position is filled.Please try again");
+				moveOnBoard_UC4();
+			}
+		else 
+			return ;
+		
+	}
+		
+		public static void main(String[] args) {
 		TicTacToeGame ticTacToe = new TicTacToeGame();
 		char[] boardElement = ticTacToe.UC1_createBoard();
 
 		UC2_chooseKey();
 		showBoard_UC3();
+		moveOnBoard_UC4();
+		
 
 	}
 }
