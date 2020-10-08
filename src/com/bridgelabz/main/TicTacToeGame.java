@@ -78,6 +78,7 @@ public class TicTacToeGame {
 		UC2_chooseKey();
 		showBoard_UC3();
 		moveOnBoardandAssignKeyUC4_5();
+		showBoard_UC3();
 
 	}
 }
