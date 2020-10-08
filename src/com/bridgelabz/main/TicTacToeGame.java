@@ -40,49 +40,44 @@ public class TicTacToeGame {
 			break;
 		}
 
-
 	}
-	
-	
+
 	/**
 	 * Method to show the TicTacToe Board
 	 */
 	public static void showBoard_UC3() {
-		System.out.println(boardElement[1]+"|"+boardElement[2]+"|"+boardElement[3]);
+		System.out.println(boardElement[1] + "|" + boardElement[2] + "|" + boardElement[3]);
 		System.out.println("~~~~~~~~~~~~~~");
-		System.out.println(boardElement[4]+"|"+boardElement[5]+"|"+boardElement[6]);
+		System.out.println(boardElement[4] + "|" + boardElement[5] + "|" + boardElement[6]);
 		System.out.println("~~~~~~~~~~~~~~");
-		System.out.println(boardElement[7]+"|"+boardElement[8]+"|"+boardElement[9]);
-		}
-	
-	public static int moveOnBoard_UC4(){
-		Scanner sc= new Scanner(System.in);
+		System.out.println(boardElement[7] + "|" + boardElement[8] + "|" + boardElement[9]);
+	}
+
+	/**
+	 * Method to move to the desired position 
+	 * @return 
+	 */
+	public static int moveOnBoardandAssignKeyUC4_5() {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the position you want to move to: ");
 		position = sc.nextInt();
-		
-		if(position>9 || position<1) {
+		if (position > 9 || position < 1 && boardElement[position] != ' ') {
 			System.out.println("You have entered invalid position.Please enter again");
-			 moveOnBoard_UC4();
-			 return 0;
-			}
-		else if (boardElement[position]!=' ') {
-				System.out.println("The position is filled.Please try again");
-				moveOnBoard_UC4();
-				return 0;
-			}
-		else 
+			moveOnBoardandAssignKeyUC4_5();
+			return 0;
+		
+		} else
+			boardElement[position]= playerKey;
 			return position;
-		
-	}
-		
-		public static void main(String[] args) {
+		}
+
+	public static void main(String[] args) {
 		TicTacToeGame ticTacToe = new TicTacToeGame();
 		char[] boardElement = ticTacToe.UC1_createBoard();
 
 		UC2_chooseKey();
 		showBoard_UC3();
-		moveOnBoard_UC4();
-		
+		moveOnBoardandAssignKeyUC4_5();
 
 	}
 }
