@@ -1,5 +1,6 @@
 package com.bridgelabz.main;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToeGame {
@@ -54,8 +55,9 @@ public class TicTacToeGame {
 	}
 
 	/**
-	 * Method to move to the desired position 
-	 * @return 
+	 * Method to move to the desired position
+	 * 
+	 * @return
 	 */
 	public static int moveOnBoardandAssignKeyUC4_5() {
 		Scanner sc = new Scanner(System.in);
@@ -65,20 +67,37 @@ public class TicTacToeGame {
 			System.out.println("You have entered invalid position.Please enter again");
 			moveOnBoardandAssignKeyUC4_5();
 			return 0;
-		
+
 		} else
-			boardElement[position]= playerKey;
-			return position;
+			boardElement[position] = playerKey;
+		return position;
+	}
+
+	/**
+	 * Method to determine who plays first
+	 * 
+	 * @return the choice of first player
+	 */
+	public static int toss_UC6() {
+		Random toss = new Random();
+		int rand_int1 = toss.nextInt(2);
+		if (rand_int1 == 1) {
+			System.out.println("User Plays first");
+		} else {
+			System.out.println("Computer Plays first");
 		}
+		return rand_int1;
+	}
 
 	public static void main(String[] args) {
 		TicTacToeGame ticTacToe = new TicTacToeGame();
 		char[] boardElement = ticTacToe.UC1_createBoard();
-
+		toss_UC6();
 		UC2_chooseKey();
 		showBoard_UC3();
 		moveOnBoardandAssignKeyUC4_5();
 		showBoard_UC3();
+		toss_UC6();
 
 	}
 }
