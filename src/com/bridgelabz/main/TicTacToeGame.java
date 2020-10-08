@@ -10,8 +10,8 @@ public class TicTacToeGame {
 	static int position;
 	static int rand_int1;
 	static char turn;
-	static boolean flag=false;
-	static int totalMoves=0;
+	static boolean flag = false;
+	static int totalMoves = 0;
 
 	public static int getRand_int1() {
 		return rand_int1;
@@ -66,13 +66,13 @@ public class TicTacToeGame {
 	 * Method to move to the desired position
 	 */
 	public static void makeMove() {
-	if(rand_int1==1) {
-		moveOnBoardandAssignKeyUC4_5(playerKey);
-	}else {
-		playComputerMove();
-				}
+		if (rand_int1 == 1) {
+			moveOnBoardandAssignKeyUC4_5(playerKey);
+		} else {
+			playComputerMove();
+		}
 	}
-	
+
 	public static void moveOnBoardandAssignKeyUC4_5(char turn) {
 		Scanner sc = new Scanner(System.in);
 		// int toss_result = getRand_int1();
@@ -81,23 +81,17 @@ public class TicTacToeGame {
 		if (position > 9 || position < 1 && boardElement[position] != ' ') {
 			System.out.println("You have entered invalid position.Please enter again");
 			moveOnBoardandAssignKeyUC4_5(playerKey);
-		
 
-		} else 
-			{
+		} else {
 			boardElement[position] = playerKey;
 			showBoard_UC3();
 			winningCondition_UC7();
 			totalMoves++;
-			turn=compKey;
+			turn = compKey;
 			playComputerMove();
-				
-			
-	}	
+
+		}
 	}
-	
-		
-	
 
 	/**
 	 * Method to determine who plays first
@@ -109,20 +103,16 @@ public class TicTacToeGame {
 		rand_int1 = toss.nextInt(2);
 		if (rand_int1 == 1) {
 			System.out.println("User Plays first");
-			turn=playerKey;
+			turn = playerKey;
 		} else {
 			System.out.println("Computer Plays first");
-			turn=compKey;
+			turn = compKey;
 		}
 		return rand_int1;
 	}
 
-	
-	  
-	 
-
 	public static boolean winningCondition_UC7() {
-		
+
 		if (((boardElement[1] == playerKey) && (boardElement[2] == playerKey) && (boardElement[3] == playerKey))
 				|| ((boardElement[4] == playerKey) && (boardElement[5] == playerKey) && (boardElement[6] == playerKey))
 				|| ((boardElement[7] == playerKey) && (boardElement[8] == playerKey) && (boardElement[9] == playerKey))
@@ -133,10 +123,9 @@ public class TicTacToeGame {
 				|| ((boardElement[3] == playerKey) && (boardElement[5] == playerKey)
 						&& (boardElement[7] == playerKey))) {
 			System.out.println("Player has won");
-			flag= true;
+			flag = true;
 			return flag;
-			
-			
+
 		}
 
 		else if (((boardElement[1] == compKey) && (boardElement[2] == compKey) && (boardElement[3] == compKey))
@@ -148,21 +137,21 @@ public class TicTacToeGame {
 				|| ((boardElement[1] == compKey) && (boardElement[5] == compKey) && (boardElement[9] == compKey))
 				|| ((boardElement[3] == compKey) && (boardElement[5] == compKey) && (boardElement[7] == compKey))) {
 			System.out.println("Computer has won");
-			flag= true;
+			flag = true;
 			return flag;
 		} else {
 			System.out.println("Match is a draw or move forward");
-			flag= false;
+			flag = false;
 			return flag;
 		}
 
 	}
-	
+
 	public static void playComputerMove() {
-		
+
 		if (totalMoves < 2) {
 			placeRandomly();
-			
+
 		} else {
 			// rows:
 			// row1
@@ -223,16 +212,71 @@ public class TicTacToeGame {
 				boardElement[5] = compKey;
 			else if (boardElement[5] == compKey && boardElement[7] == compKey && boardElement[3] == ' ')
 				boardElement[3] = compKey;
-				
-				
-				
+			else if (boardElement[1] == playerKey && boardElement[2] == playerKey && boardElement[3] == ' ')
+				boardElement[3] = compKey;
+			else if (boardElement[1] == playerKey && boardElement[3] == playerKey && boardElement[2] == ' ')
+				boardElement[2] = compKey;
+			else if (boardElement[2] == playerKey && boardElement[3] == playerKey && boardElement[1] == ' ')
+				boardElement[1] = compKey;
+			// row2
+			else if (boardElement[4] == playerKey && boardElement[5] == playerKey && boardElement[6] == ' ')
+				boardElement[6] = compKey;
+			else if (boardElement[5] == playerKey && boardElement[6] == playerKey && boardElement[4] == ' ')
+				boardElement[4] = compKey;
+			else if (boardElement[4] == playerKey && boardElement[6] == playerKey && boardElement[5] == ' ')
+				boardElement[5] = compKey;
+			// row3
+			else if (boardElement[7] == playerKey && boardElement[8] == playerKey && boardElement[9] == ' ')
+				boardElement[9] = compKey;
+			else if (boardElement[8] == playerKey && boardElement[9] == playerKey && boardElement[7] == ' ')
+				boardElement[7] = compKey;
+			else if (boardElement[7] == playerKey && boardElement[9] == playerKey && boardElement[8] == ' ')
+				boardElement[8] = compKey;
+			// columns:
+			// column1:
+			else if (boardElement[1] == playerKey && boardElement[4] == playerKey && boardElement[7] == ' ')
+				boardElement[7] = compKey;
+			else if (boardElement[1] == playerKey && boardElement[7] == playerKey && boardElement[4] == ' ')
+				boardElement[4] = compKey;
+			else if (boardElement[4] == playerKey && boardElement[7] == playerKey && boardElement[1] == ' ')
+				boardElement[1] = compKey;
+			// column2
+			else if (boardElement[2] == playerKey && boardElement[5] == playerKey && boardElement[8] == ' ')
+				boardElement[8] = compKey;
+			else if (boardElement[2] == playerKey && boardElement[8] == playerKey && boardElement[5] == ' ')
+				boardElement[5] = compKey;
+			else if (boardElement[5] == playerKey && boardElement[8] == playerKey && boardElement[2] == ' ')
+				boardElement[2] = compKey;
+			// column3
+			else if (boardElement[3] == playerKey && boardElement[6] == playerKey && boardElement[9] == ' ')
+				boardElement[9] = compKey;
+			else if (boardElement[3] == playerKey && boardElement[9] == playerKey && boardElement[6] == ' ')
+				boardElement[6] = compKey;
+			else if (boardElement[6] == playerKey && boardElement[9] == playerKey && boardElement[3] == ' ')
+				boardElement[3] = compKey;
+			// diagonals
+			// diagonal1
+			else if (boardElement[1] == playerKey && boardElement[5] == playerKey && boardElement[9] == ' ')
+				boardElement[9] = compKey;
+			else if (boardElement[1] == playerKey && boardElement[9] == playerKey && boardElement[5] == ' ')
+				boardElement[5] = compKey;
+			else if (boardElement[5] == playerKey && boardElement[9] == playerKey && boardElement[1] == ' ')
+				boardElement[1] = compKey;
+			// diagonal2
+			else if (boardElement[3] == playerKey && boardElement[5] == playerKey && boardElement[7] == ' ')
+				boardElement[7] = compKey;
+			else if (boardElement[3] == playerKey && boardElement[7] == playerKey && boardElement[5] == ' ')
+				boardElement[5] = compKey;
+			else if (boardElement[5] == playerKey && boardElement[7] == playerKey && boardElement[3] == ' ')
+				boardElement[3] = compKey;
+
 			else
 				placeRandomly();
-				}
+		}
 		winningCondition_UC7();
-		
+
 	}
-	
+
 	public static void placeRandomly() {
 		int computerTurn = 0;
 		while (true) {
@@ -241,7 +285,7 @@ public class TicTacToeGame {
 				boardElement[computerTurn] = compKey;
 				showBoard_UC3();
 				moveOnBoardandAssignKeyUC4_5(playerKey);
-				
+
 				break;
 			}
 		}
@@ -250,13 +294,12 @@ public class TicTacToeGame {
 	public static void main(String[] args) {
 		TicTacToeGame ticTacToe = new TicTacToeGame();
 		char[] boardElement = ticTacToe.UC1_createBoard();
-		
+
 		UC2_chooseKey();
 		toss_UC6();
-		 makeMove();
+		makeMove();
 		showBoard_UC3();
 		moveOnBoardandAssignKeyUC4_5(turn);
-	
 
 	}
 }
