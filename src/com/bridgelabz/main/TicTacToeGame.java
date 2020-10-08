@@ -55,7 +55,7 @@ public class TicTacToeGame {
 		System.out.println(boardElement[7]+"|"+boardElement[8]+"|"+boardElement[9]);
 		}
 	
-	public static void moveOnBoard_UC4(){
+	public static int moveOnBoard_UC4(){
 		Scanner sc= new Scanner(System.in);
 		System.out.println("Enter the position you want to move to: ");
 		position = sc.nextInt();
@@ -63,13 +63,15 @@ public class TicTacToeGame {
 		if(position>9 || position<1) {
 			System.out.println("You have entered invalid position.Please enter again");
 			 moveOnBoard_UC4();
+			 return 0;
 			}
 		else if (boardElement[position]!=' ') {
 				System.out.println("The position is filled.Please try again");
 				moveOnBoard_UC4();
+				return 0;
 			}
 		else 
-			return ;
+			return position;
 		
 	}
 		
