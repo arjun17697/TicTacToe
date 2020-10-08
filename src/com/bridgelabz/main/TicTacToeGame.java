@@ -291,6 +291,8 @@ public class TicTacToeGame {
 		}
 	}
 
+
+
 	public static void main(String[] args) {
 		TicTacToeGame ticTacToe = new TicTacToeGame();
 		char[] boardElement = ticTacToe.UC1_createBoard();
@@ -300,6 +302,5 @@ public class TicTacToeGame {
 		makeMove();
 		showBoard_UC3();
 		moveOnBoardandAssignKeyUC4_5(turn);
-
-	}
+		}
 }
