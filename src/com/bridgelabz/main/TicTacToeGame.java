@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class TicTacToeGame {
 	char[] boardElement = new char[10];
+	static char compKey;
+	static char playerKey;
 //Assigning Board Elements
 	public char[] UC1_createBoard() {
 		for (int i = 1; i < 10; i++) {
@@ -19,18 +21,16 @@ public class TicTacToeGame {
 		int choice = sc.nextInt();
 		switch(choice) {
 		case 1:
-			char compKey='O';
-			char playerKey= 'X';
+			compKey='O';
+			playerKey= 'X';
 			System.out.println("Player Key:"+playerKey);
 			System.out.println("Computer Key" +compKey);
 			break;
-		
-		
 		case 2:
-			char compKey2='X';
-			char playerKey2= 'O';
-			System.out.println("Player Key:"+playerKey2);
-			System.out.println("Computer Key" +compKey2);
+			compKey='X';
+			playerKey= 'O';
+			System.out.println("Player Key:"+playerKey);
+			System.out.println("Computer Key" +compKey);
 			break;
 		default: 
 			System.out.println("Invalid Input.Please enter again");
@@ -45,5 +45,6 @@ public class TicTacToeGame {
 		char[] boardElement = ticTacToe.UC1_createBoard();
 		
 		UC2_chooseKey();
+		
 	}
 }
